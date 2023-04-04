@@ -7,6 +7,7 @@ import { IProduct } from "../interfaces/IProduct";
 import { ProductCollection } from "../components/ProductCollection";
 import Cart from "../components/Cart";
 import { useCart } from "../context/CartContextProvider";
+import { FiShoppingCart } from "react-icons/fi";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,23 +41,33 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
+      <main className={`${styles.main} sm:p-1`}>
         <div>
-          <button onClick={showToastMessage}>Notify</button>
           <ToastContainer />
         </div>
+        <div className="fixed bottom-0 right-0 mb-4 mr-4 z-50">
+          <button
+            onClick={() => setShowCart(true)}
+            type="button"
+            className="ml-3 h-20 w-20 bg-gray-100 flex items-center justify-center rounded-full border-2 border-opacity-80 border-primary-blue opacity-90"
+          >
+            <span className="sr-only">Carrinho</span>
+            <FiShoppingCart className="w-10 h-10" />
+          </button>
+        </div>
+
         {/* <button onClick={() => setShowCart(true)}>Carrinho</button>
         {showCart && <Cart onClose={() => setShowCart(false)} />} */}
-        <div>
-          <button onClick={() => setShowCart(true)}>View Cart</button>
+        <div className=" sm:w-80 lg:w-1/2 ">
           {showCart && (
             <Cart open={showCart} onClose={() => setShowCart(false)} />
           )}
-          <h1>Lista de produtos:</h1>
           {isLoading ? (
             <p>Carregando</p>
           ) : (
-            <ProductCollection products={products} onAddToCart={addItem} />
+            <div>
+              <ProductCollection products={products} onAddToCart={addItem} />
+            </div>
             // <div className="bg-white font-sans">
             //   <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
             //     <h2 className="text-2xl font-bold tracking-tight text-gray-900">

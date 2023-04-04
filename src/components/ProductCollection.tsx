@@ -12,47 +12,49 @@ export function ProductCollection({
   onAddToCart,
 }: ProductCollectionProps) {
   return (
-    <div className="bg-white font-sans">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-          Customers also purchased
+    <div className="bg-white font-sans static z-10">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-4  z-10">
+        <h2 className="text-4xl self-center text-center font-bold tracking-tight text-primary-blue">
+          Lista de Produtos
         </h2>
 
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 z-10 lg:grid-cols-4 xl:gap-x-8">
           {Array.isArray(products) && products.length > 0 ? (
             products.map((product) => (
-              <div key={product.ean} className="group relative">
-                <div className="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+              <div key={product.ean} className="group relative p-1 z-10">
+                <div className="max-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-transparent lg:aspect-none group-hover:opacity-75 lg:h-60 items-center">
                   <Image
                     src={product.picture}
                     alt={product.fullname}
                     width="100"
                     height="100"
-                    className="h-60 w-60 object-cover object-center lg:h-full lg:w-full"
+                    className="h-full w-full object-cover object-center m-autoz-10 "
                   />
                 </div>
-                <div className="mt-4 flex justify-between">
+                <div className="mt-4 flex justify-between z-10">
                   <div>
-                    <h3 className="text-sm text-gray-700">{product.name}</h3>
+                    <h3 className="truncate text-sm text-gray-700 w-40 z-10 ">
+                      {product.name}
+                    </h3>
                   </div>
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-gray-900 z-10">
                     {product.price}
                   </p>
                 </div>
                 <button
                   type="button"
-                  className="w-full bg-indigo-600 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="z-10 w-full bg-primary-blue border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-primary-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-blue mt-2"
                   onClick={() => {
                     console.log("Adicionando o item: ", product);
                     onAddToCart(product);
                   }}
                 >
-                  Add item to cart
+                  Adicionar ao Carrinho
                 </button>
               </div>
             ))
           ) : (
-            <div>Nada</div>
+            <div>Nenhum item encontrado por aqui </div>
           )}
         </div>
       </div>
