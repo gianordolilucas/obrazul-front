@@ -1,13 +1,13 @@
 import { IProduct } from "@/interfaces/IProduct";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
-
 import { useCart } from "../context/CartContextProvider";
+
 type cartProp = {
   open: boolean;
   onClose: () => void;
 };
-export default function Cart({ open, onClose }: cartProp) {
+export function Cart({ open, onClose }: cartProp) {
   const { cartState } = useCart();
   const cartClasses = open ? "translate-x-0" : "translate-x-full";
 
