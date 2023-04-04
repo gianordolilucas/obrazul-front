@@ -1,11 +1,16 @@
+import { useCart } from "@/context/CartContextProvider";
 import { IProduct } from "../interfaces/IProduct";
 import Image from "next/image";
-interface ProductCollectionProps {
+
+type ProductCollectionProps = {
   products: IProduct[];
-}
-export const ProductCollection: React.FC<ProductCollectionProps> = ({
+  onAddToCart: (item: IProduct) => void;
+};
+
+export function ProductCollection({
   products,
-}) => {
+  onAddToCart,
+}: ProductCollectionProps) {
   return (
     <div className="bg-white font-sans">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -28,17 +33,22 @@ export const ProductCollection: React.FC<ProductCollectionProps> = ({
                 </div>
                 <div className="mt-4 flex justify-between">
                   <div>
-                    <h3 className="text-sm text-gray-700">
-                      <a href={`../pages/product/${product.ean}`}>
-                        <span aria-hidden="true" className="absolute inset-0" />
-                        {product.name}
-                      </a>
-                    </h3>
+                    <h3 className="text-sm text-gray-700">{product.name}</h3>
                   </div>
                   <p className="text-sm font-medium text-gray-900">
                     {product.price}
                   </p>
                 </div>
+                <button
+                  type="button"
+                  className="w-full bg-indigo-600 border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={() => {
+                    console.log("Adicionando o item: ", product);
+                    onAddToCart(product);
+                  }}
+                >
+                  Add item to cart
+                </button>
               </div>
             ))
           ) : (
@@ -48,4 +58,4 @@ export const ProductCollection: React.FC<ProductCollectionProps> = ({
       </div>
     </div>
   );
-};
+}
