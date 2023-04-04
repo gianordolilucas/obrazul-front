@@ -14,12 +14,10 @@ export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showCart, setShowCart] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const { addItem } = useCart();
 
   const handleSearch = async (term: string) => {
-    setSearchTerm(term);
-    const response = searchTerm
+    const response = term
       ? await fetch(`/api/searchProducts/?search=${term}`)
       : await fetch("/api/products");
     const data = await response.json();
