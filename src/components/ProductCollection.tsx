@@ -28,7 +28,7 @@ export function ProductCollection({
                     alt={product.fullname}
                     width="100"
                     height="100"
-                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                    className="h-60 w-60 object-cover object-center lg:h-full lg:w-full"
                   />
                 </div>
                 <div className="mt-4 flex justify-between">

@@ -21,24 +21,28 @@ export default function Cart({ open, onClose }: cartProp) {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+    const handleClickOutsideCart = (event: MouseEvent) => {
+      const cartElement = document.getElementById("cart");
+      if (cartElement && !cartElement.contains(event.target as Node)) {
         onClose();
       }
     };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutsideCart);
+    }
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutsideCart);
     };
-  }, [onClose]);
+  }, [open, onClose]);
 
   return (
     <div className={`fixed inset-0 overflow-hidden z-50 ${cartClasses}`}>
       <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
       <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex">
-        <div className="relative w-screen max-w-md">
+        <div
+          className="relative w-screen max-w-md transition-all duration-300 ease-out"
+          id="cart"
+        >
           <div className="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
             <div className="px-4 sm:px-6">
               <div className="flex items-start justify-between">

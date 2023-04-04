@@ -14,7 +14,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [showCart, setShowCart] = useState(true);
+  const [showCart, setShowCart] = useState(false);
 
   const showToastMessage = () => {
     toast.success("Success Notification !", {
