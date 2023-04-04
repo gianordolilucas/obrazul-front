@@ -1,3 +1,4 @@
+const colors = require("tailwindcss/colors");
 module.exports = {
   mode: "jit",
   purge: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -14,10 +15,13 @@ module.exports = {
       xl: "1280px",
     },
     colors: {
+      ...colors,
       primary: {
+        ...colors.primary,
         blue: "#1a62d6",
       },
       secondary: {
+        ...colors.secondary,
         blue: "#0048b9",
       },
     },

@@ -249,6 +249,12 @@
     z-index: 1;
   }
 }
+/* Tablet and Smaller Desktop */
+@media(max-width: 700px) {
+  .main{
+    padding: 1.5rem
+  }
+}
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
