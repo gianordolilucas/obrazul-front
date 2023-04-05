@@ -31,11 +31,9 @@ export default function Home() {
       const data = await response.json();
       setProducts(data.products);
       setIsLoading(false);
-      console.log("sem term", data.products);
     };
     fetchData();
   }, []);
-
   return (
     <>
       <Head>
@@ -67,7 +65,7 @@ export default function Home() {
           <button
             onClick={() => setShowCart(true)}
             type="button"
-            className="lg:hidden ml-3 h-20 w-20 bg-gray-100 flex items-center justify-center rounded-full border-2 border-opacity-80 border-primary-blue opacity-90"
+            className="lg:hidden ml-3 h-20 w-20 bg-primary-blue opacity-75 flex items-center justify-center rounded-full"
           >
             <span className="sr-only">Carrinho</span>
             <FiShoppingCart className="w-10 h-10" />
