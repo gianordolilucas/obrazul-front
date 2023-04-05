@@ -1,7 +1,6 @@
-import { IProduct } from "@/interfaces/IProduct";
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useCart } from "../context/CartContextProvider";
+import { useRouter } from "next/router";
 
 type cartProp = {
   open: boolean;
@@ -10,7 +9,7 @@ type cartProp = {
 export function Cart({ open, onClose }: cartProp) {
   const { cartState } = useCart();
   const cartClasses = open ? "translate-x-0" : "translate-x-full";
-
+  const router = useRouter();
   const { addItem, removeItem } = useCart();
 
   const calcTotal = () => {
@@ -19,6 +18,10 @@ export function Cart({ open, onClose }: cartProp) {
       0
     );
     return total.toFixed(2);
+  };
+
+  const handleCheckoutClick = () => {
+    router.push("/checkout");
   };
 
   useEffect(() => {
@@ -39,7 +42,7 @@ export function Cart({ open, onClose }: cartProp) {
   return (
     <div className={`fixed inset-0 overflow-hidden z-50 ${cartClasses}`}>
       <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-      <div className="fixed inset-y-0 right-0 pl-10 max-w-full flex">
+      <div className="fixed inset-y-0 right-0 md:pl-10 sm:pl-0 max-w-full flex">
         <div
           className="relative w-screen max-w-md transition-all duration-300 ease-out"
           id="cart"
@@ -107,10 +110,6 @@ export function Cart({ open, onClose }: cartProp) {
                                 type="button"
                                 className="font-medium text-primary-blue hover:text-indigo-500"
                                 onClick={() => {
-                                  console.log(
-                                    "Removendo o item: ",
-                                    item.product
-                                  );
                                   removeItem(item.product);
                                 }}
                               >
@@ -134,17 +133,10 @@ export function Cart({ open, onClose }: cartProp) {
                 <button
                   type="button"
                   className="w-full bg-primary-blue border border-transparent rounded-md py-2 px-4 flex items-center justify-center text-base font-medium text-white hover:bg-primary-blue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-blue"
+                  onClick={handleCheckoutClick}
                 >
                   Finalizar compra
                 </button>
-              </div>
-              <div className="mt-6 flex justify-center">
-                <a
-                  href="#"
-                  className="text-base font-medium text-gray-700 hover:text-gray-800"
-                >
-                  Continuar comprando
-                </a>
               </div>
             </div>
           </div>

@@ -43,7 +43,6 @@ const cartReducer = (state: CartState, action: Action): CartState => {
       const cartProduct = state.items.find(
         (item) => item.product.ean === action.payload.product.ean
       );
-      console.log(state);
       if (cartProduct) {
         return {
           ...state,
@@ -66,13 +65,11 @@ const cartReducer = (state: CartState, action: Action): CartState => {
 
 export const CartProvider = ({ children }: any) => {
   const teste = useReducer(cartReducer, { items: [] });
-  console.log("useReducer", teste);
   const [cartState, dispatch] = teste;
   const value = {
     cartState,
     dispatch,
   };
-  console.log("value", value);
   return (
     <CartContext.Provider value={{ cartState, dispatch }}>
       {children}

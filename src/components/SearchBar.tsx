@@ -17,7 +17,6 @@ export function SearchBar({ onSearch, products }: SearchProps) {
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log("vindo aqui");
     if (event.key === "Enter") {
       handleSearch();
     }

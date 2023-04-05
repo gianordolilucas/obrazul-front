@@ -4,6 +4,14 @@ const nextConfig = {
   images: {
     domains: ["static.obrazul.com.br"],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/product/:ean",
+        destination: "/product/[ean]",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
